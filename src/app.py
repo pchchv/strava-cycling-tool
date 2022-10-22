@@ -3,8 +3,8 @@ Application Implementation
 '''
 
 import requests
-from flask import Flask
 from pyngrok import ngrok
+from flask import Flask, request
 from environment import STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET
 
 
@@ -62,3 +62,22 @@ def index():
     ngrok_url = tunnels.public_url
     create_subscription(ngrok_url + '/webhook')
     return ('SUCCESS', 200)
+
+
+@app.get('/webhook')
+def webhook_get():
+    """
+    Validate webhook subscriptions
+    """
+    data = request.args
+    print(data)
+    # Parse the query string parameters
+    mode = data['hub.mode']
+    verify_token = data['hub.verify_token']
+    challenge = data['hub.challenge']
+    if (mode != 'subscribe') or (verify_token != VERIFY_TOKEN):
+        print('WEBHOOK_NOT_VERIFIED')
+        return ('INVALID_REQUEST', 401)
+    else:
+        print('WEBHOOK_VERIFIED')
+        return ({'hub.challenge': challenge}, 200)
