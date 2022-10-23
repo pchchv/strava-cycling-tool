@@ -5,6 +5,27 @@ Getting data from Strava API
 import requests
 
 
+def get_latest_activity_data(access_token: str, number_of_activities: int = 1) -> list:
+    """
+    @params:
+        number_of_activities
+    """
+    try:
+        base_url = "https://www.strava.com/api/v3/athlete/activities"
+        header = {'Authorization': 'Bearer ' + access_token}
+        param = {
+			'per_page': number_of_activities,
+			'page': 1
+		}
+        r = requests.get(base_url, headers=header, params=param)
+    except requests.exceptions.RequestException:
+        return None
+
+    my_dataset = r.json()
+
+    return my_dataset
+
+
 def get_timeinterval_activity_data(access_token: str, before: int, after: int) -> list:
     """
     @params:
