@@ -3,6 +3,7 @@ Application Implementation
 '''
 
 from datetime import date, datetime, timedelta
+from threading import Timer
 import requests
 from pyngrok import ngrok
 import pandas as pd
@@ -177,7 +178,19 @@ def webhook_post():
         else:
             print("No LINE messages sent!")
         return ("ACTIVITY_CREATED", 200)
-    elif (data["aspect_type"] == "update"):
+    elif data["aspect_type"] == "update":
         return ("ACTIVITY_UPDATED", 200)
-    elif (data["aspect_type"] == "delete"):
+    elif data["aspect_type"] == "delete":
         return ("ACTIVITY_DELETED", 200)
+
+
+def open_browser():
+    """
+    Open the web browser silently
+    """
+    requests.get("http://127.0.0.1:5000")
+
+
+if __name__ == "__main__":
+    Timer(1, open_browser).start()
+    app.run(debug=True)
