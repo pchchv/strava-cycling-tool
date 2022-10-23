@@ -8,6 +8,21 @@ from pathlib import Path
 from environment import ZWIFT_ACTIVITY_DIR
 
 
+def move_to_uploaded_or_malformed_activities_folder(filename: str):
+    """
+    @params:
+        filename
+    """
+    source_dir = os.path.join(ZWIFT_ACTIVITY_DIR, "FixedActivities")
+    if not os.path.exists(source_dir):
+        os.makedirs(source_dir)
+    dest_dir = os.path.join(ZWIFT_ACTIVITY_DIR, "UploadedOrMalformedActivities")
+    if not os.path.exists(dest_dir):
+        os.makedirs(dest_dir)
+    source = os.path.join(source_dir, filename)
+    dest = os.path.join(dest_dir, filename)
+    shutil.move(source, dest)
+
 def move_to_fixed_activities_folder(filename: str):
     """
     @params:
