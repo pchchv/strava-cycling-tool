@@ -9,7 +9,7 @@ from pyngrok import ngrok
 import pandas as pd
 from flask import Flask, request
 from auth import get_access_token
-from LINEMessage import sendLINEMessage
+from LINEMessage import send_line_message
 from strava_analysis import create_activity_dataframe
 from strava_data import get_timeinterval_activity_data, get_latest_activity_data
 from environment import STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET
@@ -171,9 +171,9 @@ def webhook_post():
                 latest_activity["distance"] > 0:
                 ride_stats = calculate_ride_rtats(access_token)
                 PROCESSED_ACTIVITIES[latest_activity["id"]] = True
-                sendLINEMessage(strava_activity_url + "\n\n" + ride_stats)
+                send_line_message(strava_activity_url + "\n\n" + ride_stats)
             else:
-                sendLINEMessage(strava_activity_url)
+                send_line_message(strava_activity_url)
             print("LINE messages sent!")
         else:
             print("No LINE messages sent!")

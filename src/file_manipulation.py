@@ -23,6 +23,7 @@ def move_to_uploaded_or_malformed_activities_folder(filename: str):
     dest = os.path.join(dest_dir, filename)
     shutil.move(source, dest)
 
+
 def move_to_fixed_activities_folder(filename: str):
     """
     @params:
@@ -36,6 +37,7 @@ def move_to_fixed_activities_folder(filename: str):
     dest = os.path.join(dest_dir, filename)
     shutil.move(source, dest)
 
+
 def move_to_original_activities_folder(filename: str):
     """
     @params:
@@ -47,6 +49,7 @@ def move_to_original_activities_folder(filename: str):
     source = os.path.join(ZWIFT_ACTIVITY_DIR, filename)
     dest = os.path.join(dest_dir, filename)
     shutil.move(source, dest)
+
 
 def rename_fit_file(newfilename: str, fitfilename: str="fitfiletools.fit"):
     """

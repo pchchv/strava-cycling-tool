@@ -6,6 +6,7 @@ from strava_upload import preprocessing, upload_fit_activity_files
 from fit_file_tools import fix_fit_activity_files
 from auth import get_access_token
 
+
 def main():
     """
     The main function that starts the application

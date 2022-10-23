@@ -52,6 +52,7 @@ def preprocessing():
         gmail.close()
         gmail.logout()
 
+
 def upload_fit_activity_files(access_token: str):
     """
     Activity uploading related functions
@@ -107,6 +108,7 @@ def upload_fit_activity_files(access_token: str):
                         break
                 print("")
 
+
 def check_upload_status(access_token: str, upload_id: str) -> Tuple[bool, Any]:
     """
     @params:
@@ -141,17 +143,20 @@ def check_upload_status(access_token: str, upload_id: str) -> Tuple[bool, Any]:
         print(status + '\n')
         return (False, activity_id)
 
+
 def wait(poll_interval: float):
     """
     Helper
     """
     time.sleep(poll_interval)
 
+
 def find_whole_word(w):
     """
     Helper
     """
     return re.compile(rf'\b({0})\b'.format(w), flags=re.IGNORECASE).search
+
 
 def download_attachments_in_email(connection, email_id, download_folder):
     """

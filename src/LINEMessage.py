@@ -11,7 +11,7 @@ from environment import LINE_CHANNEL_ACCESS_TOKEN
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 
 
-def sendLINEMessage(msg: str):
+def send_line_message(msg: str):
     """
     Sending LINEMessage
     """
