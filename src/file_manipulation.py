@@ -5,7 +5,7 @@ File manipulations
 import os
 import shutil
 from pathlib import Path
-from enviroment import ZWIFT_ACTIVITY_DIR
+from environment import ZWIFT_ACTIVITY_DIR
 
 
 def move_to_fixed_activities_folder(filename: str):

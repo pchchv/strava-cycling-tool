@@ -66,7 +66,7 @@ def fix_fit_activity_files():
             # Step 1: open the webpage of FIT File Tools
             driver.get("https://www.fitfiletools.com/#/top")            
             # update progress bar
-            bar()
+            # bar() NEED FIX: is not callable
 
         with alive_bar(len(fitfile_list), title='Fixing FIT activity files', bar="blocks") as bar:
             for fitfile in fitfile_list:           
@@ -159,7 +159,7 @@ def fix_fit_activity_files():
                         # pyautogui.press('return')
                         # time.sleep(3)
                         # update progress bar
-                        bar()
+                        # bar() NEED FIX: is not callable
                         # Step 9: click the "Close" button of "Time Adjuster"
                         element = WebDriverWait(driver, 5).until(
                             EC.presence_of_element_located((By.LINK_TEXT, '« Close'))
